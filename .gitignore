@@ -1,0 +1,5 @@
+# local preview / scratch
+*.png
+shot.py
+test.py
+.DS_Store

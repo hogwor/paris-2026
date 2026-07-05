@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<title>Paris 2026 · Saints in Paris ⚜️ (No Steelers Allowed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a0a;        /* Saints black */
+  --ink-soft:#161616;
+  --paper:#f3efe4;      /* warm off-white */
+  --paper-card:#fbf9f2;
+  --gold:#d3bc8d;       /* Saints Old Gold */
+  --gold-deep:#a8905c;  /* deeper old gold */
+  --gold-bright:#e4cf9e;
+  --rouge:#8a1c2b;      /* deep French red */
+  --browns-orange:#fb4f14; /* Browns orange */
+  --browns-brown:#311d00;  /* Browns brown */
+  --browns-tan:#3d2410;
+  --line:#ded7c6;
+  --line-ink:#2c2c2c;
+  --muted:#6b6659;
+  --good:#2f7d4f;
+  --shadow:0 2px 0 rgba(10,10,10,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:72px;
+}
+a{color:inherit}
+img{max-width:100%}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:var(--ink);
+  color:var(--paper);
+  padding:26px 20px 22px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:4px solid var(--gold);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,transparent 0 38px,rgba(255,182,18,.04) 38px 39px);
+  pointer-events:none;
+}
+.hero .kicker{
+  font-family:'Archivo Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.22em;
+  font-size:12px;color:var(--gold);font-weight:700;
+  display:flex;align-items:center;gap:8px;
+}
+.hero h1{
+  font-family:'Anton',sans-serif;
+  font-weight:400;
+  font-size:clamp(38px,13vw,64px);
+  line-height:.92;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  margin:8px 0 2px;
+}
+.hero h1 .yr{color:var(--gold)}
+.hero .match{
+  font-family:'Archivo Narrow',sans-serif;
+  font-weight:600;font-size:15px;letter-spacing:.03em;
+  color:#e9e4d6;text-transform:uppercase;
+}
+.hero .match .strike{text-decoration:line-through;text-decoration-color:var(--rouge);text-decoration-thickness:2px;opacity:.7}
+.hero .match .mock{color:var(--gold);font-style:italic;text-transform:none;letter-spacing:0}
+.allegiance{
+  margin-top:16px;padding-top:14px;border-top:1px solid rgba(211,188,141,.25);
+  display:flex;flex-wrap:wrap;gap:7px;align-items:center;
+}
+.fanbadge{
+  font-family:'Archivo Narrow',sans-serif;font-size:11.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;
+  padding:5px 10px;border-radius:2px;display:inline-flex;align-items:center;gap:6px;
+}
+.fanbadge.saints{background:var(--gold);color:var(--ink)}
+.fanbadge.browns{background:#311d00;color:#ff3c00;border:1px solid #ff3c00}
+.fanbadge.steelers{background:none;border:1px dashed rgba(211,188,141,.4);color:#9a9488}
+.fanbadge.steelers s{opacity:.9}
+.hero .meta{
+  margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;
+}
+.chip{
+  font-family:'Archivo Narrow',sans-serif;
+  font-size:12.5px;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:2px;padding:5px 9px;color:#e9e4d6;
+  display:flex;align-items:center;gap:6px;
+}
+.chip b{color:var(--gold);font-weight:700}
+.count{
+  margin-top:16px;
+  display:flex;align-items:baseline;gap:10px;
+}
+.count .num{
+  font-family:'Anton',sans-serif;font-size:30px;color:var(--paper);
+}
+.count .lbl{
+  font-family:'Archivo Narrow',sans-serif;text-transform:uppercase;
+  letter-spacing:.14em;font-size:11px;color:var(--gold);font-weight:700;
+}
+
+/* ---------- NAV ---------- */
+nav.tabs{
+  position:sticky;top:0;z-index:40;
+  background:var(--ink);
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  border-bottom:1px solid var(--line-ink);
+}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  flex:0 0 auto;
+  background:none;border:none;cursor:pointer;
+  color:#b8b2a3;
+  font-family:'Archivo Narrow',sans-serif;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;font-size:13px;
+  padding:13px 15px;position:relative;
+  transition:color .15s;
+}
+nav.tabs button.active{color:var(--gold)}
+nav.tabs button.active::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:0;height:3px;
+  background:var(--gold);
+}
+
+/* ---------- SECTIONS ---------- */
+main{max-width:760px;margin:0 auto;padding:0 16px}
+.panel{display:none;padding:22px 0 12px;animation:fade .25s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.sec-head{
+  display:flex;align-items:center;gap:12px;margin:2px 0 16px;
+}
+.sec-head .no{
+  font-family:'Anton',sans-serif;font-size:34px;color:var(--gold-deep);
+  line-height:1;
+}
+.sec-head h2{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:26px;
+  text-transform:uppercase;letter-spacing:.01em;line-height:1;
+}
+.sec-head p.sub{
+  font-family:'Archivo Narrow',sans-serif;color:var(--muted);
+  font-size:13px;text-transform:uppercase;letter-spacing:.06em;
+}
+
+/* day block */
+.day{
+  border:1px solid var(--line);
+  background:var(--paper-card);
+  border-radius:6px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.day-top{
+  background:var(--ink);color:var(--paper);
+  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.day-top .dt{
+  font-family:'Archivo Narrow',sans-serif;text-transform:uppercase;
+  letter-spacing:.12em;font-size:12px;color:var(--gold);font-weight:700;
+}
+.day-top h3{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:20px;
+  text-transform:uppercase;letter-spacing:.01em;margin-top:1px;
+}
+.day-top .badge{
+  font-family:'Archivo Narrow',sans-serif;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;
+  border:1px solid var(--gold);color:var(--gold);
+  padding:3px 7px;border-radius:2px;white-space:nowrap;
+}
+.day-body{padding:14px 16px 16px}
+.lead{font-size:14.5px;color:var(--muted);margin-bottom:12px}
+
+/* option cards (tap to pick) */
+.opts{display:grid;gap:10px}
+.opt{
+  border:1px solid var(--line);
+  border-left:4px solid var(--line);
+  border-radius:5px;padding:12px 13px 13px 14px;
+  cursor:pointer;background:#fff;
+  transition:border-color .15s,background .15s,transform .06s;
+  position:relative;
+}
+.opt:active{transform:scale(.995)}
+.opt .oh{
+  display:flex;align-items:center;gap:8px;margin-bottom:3px;
+}
+.opt .tag{
+  font-family:'Archivo Narrow',sans-serif;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+}
+.opt h4{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:15.5px;
+  flex:1;
+}
+.opt .tick{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--line);flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:12px;font-weight:800;
+}
+.opt p{font-size:13.5px;color:#4a463c;line-height:1.45}
+.opt .links{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.opt.pick{border-color:var(--gold-deep);border-left-color:var(--gold);background:#fffdf4}
+.opt.pick .tick{background:var(--good);border-color:var(--good)}
+
+.pill{
+  font-family:'Archivo Narrow',sans-serif;font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em;
+  background:var(--ink);color:var(--gold);
+  padding:4px 9px;border-radius:2px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.pill:hover{background:var(--gold);color:var(--ink)}
+.pill.ghost{background:none;border:1px solid var(--line-ink);color:var(--ink)}
+.pill.ghost:hover{background:var(--ink);color:var(--gold)}
+
+/* steelers slander box */
+.jab{
+  background:var(--ink);color:var(--paper);
+  border-radius:6px;padding:13px 15px;margin-bottom:18px;cursor:pointer;
+  border-left:4px solid var(--gold);
+  transition:transform .06s;
+}
+.jab:active{transform:scale(.995)}
+.jab-lbl{
+  display:block;font-family:'Archivo Narrow';text-transform:uppercase;
+  letter-spacing:.1em;font-size:11px;color:var(--gold);font-weight:700;margin-bottom:5px;
+}
+.jab-lbl em{color:var(--muted);font-style:normal;text-transform:none;letter-spacing:0;font-size:11px}
+#jabBox{font-size:15px;font-style:italic;line-height:1.4;color:#efe9db}
+
+/* dawg pound box (Browns) */
+.dawg{
+  background:var(--browns-brown);color:#fff;
+  border-radius:6px;padding:13px 15px;margin-bottom:18px;cursor:pointer;
+  border-left:4px solid var(--browns-orange);
+  transition:transform .06s;
+}
+.dawg:active{transform:scale(.995)}
+.dawg-lbl{
+  display:block;font-family:'Archivo Narrow';text-transform:uppercase;
+  letter-spacing:.1em;font-size:11px;color:var(--browns-orange);font-weight:700;margin-bottom:5px;
+}
+.dawg-lbl em{color:#b79a82;font-style:normal;text-transform:none;letter-spacing:0;font-size:11px}
+#dawgBox{font-size:15px;font-style:italic;line-height:1.4;color:#ffe9dc}
+
+/* callout */
+.call{
+  border:1px solid var(--gold-deep);
+  background:#fdf6e0;
+  border-radius:5px;padding:12px 14px;margin:14px 0;
+  font-size:13.5px;color:#5a4a1e;
+}
+.call b{color:var(--gold-deep)}
+
+/* split day columns */
+.split{display:grid;gap:14px}
+@media(min-width:620px){.split{grid-template-columns:1fr 1fr}}
+.crew{
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper-card);
+}
+.crew-top{padding:11px 14px;color:#fff;display:flex;align-items:center;gap:8px}
+.crew-top.guys{background:var(--ink)}
+.crew-top.fam{background:var(--rouge)}
+.crew-top h3{font-family:'Anton';font-weight:400;font-size:18px;text-transform:uppercase}
+.crew-top .em{font-size:18px}
+.crew-body{padding:12px 14px}
+
+/* checklist / packing / vote shared row */
+.row{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:11px 4px;border-bottom:1px solid var(--line);
+  cursor:pointer;
+}
+.row:last-child{border-bottom:none}
+.box{
+  width:22px;height:22px;border-radius:5px;border:2px solid var(--line-ink);
+  flex:0 0 auto;margin-top:1px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:13px;transition:.15s;
+}
+.row.done .box{background:var(--good);border-color:var(--good)}
+.row.done .rtext{text-decoration:line-through;color:var(--muted)}
+.rtext{font-size:14.5px;flex:1}
+.rtext small{display:block;font-size:12px;color:var(--muted);text-decoration:none!important}
+
+/* progress */
+.prog{
+  background:var(--ink);color:var(--paper);border-radius:6px;
+  padding:14px 16px;margin-bottom:16px;
+}
+.prog .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.prog .top span{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--gold);font-weight:700}
+.prog .top b{font-family:'Anton';font-size:22px;font-weight:400}
+.bar{height:8px;background:#2f2f36;border-radius:20px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .35s ease;border-radius:20px}
+
+/* vote */
+.vote-item{
+  border:1px solid var(--line);border-radius:6px;background:var(--paper-card);
+  padding:12px 14px;margin-bottom:10px;
+}
+.vote-item .vh{display:flex;align-items:center;gap:10px}
+.vote-item h4{font-family:'Archivo';font-weight:700;font-size:15px;flex:1}
+.vbtn{
+  font-family:'Archivo Narrow';font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;font-size:12px;
+  border:1.5px solid var(--line-ink);background:#fff;border-radius:4px;
+  padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;
+  transition:.12s;
+}
+.vbtn:hover{border-color:var(--gold-deep)}
+.vbtn.on{background:var(--gold);border-color:var(--gold-deep)}
+.vbtn .c{font-family:'Anton';font-size:15px}
+.vmeta{font-size:12px;color:var(--muted);margin-top:7px;font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.05em}
+
+/* misc info list */
+.info li{list-style:none;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;display:flex;gap:10px}
+.info li:last-child{border:none}
+.info li .k{color:var(--gold-deep);font-weight:700;flex:0 0 92px;font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:12.5px;padding-top:2px}
+
+.note{font-size:12px;color:var(--muted);margin-top:10px;font-style:italic}
+footer{
+  text-align:center;padding:26px 16px 34px;color:var(--muted);
+  font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.1em;font-size:11px;
+}
+.reset{
+  background:none;border:1px solid var(--line);color:var(--muted);
+  font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.06em;
+  font-size:11px;font-weight:600;padding:7px 12px;border-radius:3px;cursor:pointer;margin-top:12px;
+}
+.reset:hover{border-color:var(--rouge);color:var(--rouge)}
+
+/* sticky mobile helper */
+.saved-flash{
+  position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--gold);
+  font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;
+  padding:9px 16px;border-radius:30px;opacity:0;pointer-events:none;transition:.3s;z-index:60;
+  border:1px solid var(--gold-deep);
+}
+.saved-flash.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">⚜️ NFL Paris Game · Week 7 · Who Dat</div>
+  <h1>Paris <span class="yr">'26</span></h1>
+  <div class="match">New Orleans Saints vs. Pittsburgh <span class="strike">Steelers</span> <span class="mock">(bless their hearts)</span> · Stade de France</div>
+  <div class="meta">
+    <span class="chip">📅 <b>Oct 23–26</b></span>
+    <span class="chip">🎟️ Kickoff <b>2:30 PM</b> Sun Oct 25</span>
+    <span class="chip">🏠 Base: <b>5th / Latin Qtr</b></span>
+    <span class="chip">👥 <b>6 adults + 2 teens</b></span>
+  </div>
+  <div class="count">
+    <span class="num" id="countNum">—</span>
+    <span class="lbl" id="countLbl">days to kickoff</span>
+  </div>
+  <div class="allegiance" id="allegiance"></div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-tab="plan">Itinerary</button>
+  <button data-tab="train">Train</button>
+  <button data-tab="stay">Where to Stay</button>
+  <button data-tab="checklist">Booking</button>
+  <button data-tab="vote">Vote</button>
+  <button data-tab="packing">Packing</button>
+</nav>
+
+<main>
+
+<!-- ITINERARY -->
+<section class="panel active" id="plan">
+  <div class="sec-head">
+    <span class="no">01</span>
+    <div>
+      <h2>The Weekend</h2>
+      <p class="sub">Tap an option to lock it in · saves on your device</p>
+    </div>
+  </div>
+
+  <div class="jab" id="jab" onclick="renderJab()">
+    <span class="jab-lbl">⚜️ Daily Steelers slander <em>(tap for more)</em></span>
+    <span id="jabBox"></span>
+  </div>
+
+  <div class="dawg" id="dawg" onclick="renderDawg()">
+    <span class="dawg-lbl">🐶 Dawg Pound dispatch <em>(tap for more)</em></span>
+    <span id="dawgBox"></span>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day">
+    <div class="day-top">
+      <div>
+        <div class="dt">Friday · Arrival</div>
+        <h3>Check in &amp; ease in</h3>
+      </div>
+      <span class="badge">Everyone</span>
+    </div>
+    <div class="day-body">
+      <p class="lead">Train in, drop bags in the 5th, keep the evening low-key and walkable.</p>
+      <div class="opts" data-group="fri">
+        <div class="opt" data-id="fri-a">
+          <div class="oh"><span class="tag">Option A</span><h4>Latin Quarter stroll + dinner</h4><span class="tick">✓</span></div>
+          <p>Wander the Latin Quarter, see the Panthéon lit up, walk to Notre-Dame at dusk (exterior free). Casual bistro or crêperie.</p>
+          <div class="links"><a class="pill" href="https://www.notredamedeparis.fr/en/" target="_blank" rel="noopener">Notre-Dame ↗</a></div>
+        </div>
+        <div class="opt" data-id="fri-b">
+          <div class="oh"><span class="tag">Option B</span><h4>Luxembourg Gardens + easy meal</h4><span class="tick">✓</span></div>
+          <p>Relax in the Jardin du Luxembourg (10–15 min walk), then dinner in Saint-Germain. Gentle after a travel day.</p>
+          <div class="links"><a class="pill" href="https://www.senat.fr/visite/jardin/index.html" target="_blank" rel="noopener">The gardens ↗</a></div>
+        </div>
+        <div class="opt" data-id="fri-c">
+          <div class="oh"><span class="tag">Option C</span><h4>Sunset Seine cruise</h4><span class="tick">✓</span></div>
+          <p>A 1-hour cruise past Notre-Dame, the Louvre &amp; the Eiffel Tower. Low-effort, jet-lag-proof, teen-approved.</p>
+          <div class="links">
+            <a class="pill" href="https://www.bateauxparisiens.com/en/" target="_blank" rel="noopener">Bateaux Parisiens ↗</a>
+            <a class="pill ghost" href="https://www.vedettesdupontneuf.com/en/" target="_blank" rel="noopener">Pont Neuf ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day">
+    <div class="day-top">
+      <div>
+        <div class="dt">Saturday · Big Day</div>
+        <h3>The marquee sightseeing day</h3>
+      </div>
+      <span class="badge">Everyone</span>
+    </div>
+    <div class="day-body">
+      <p class="lead">One full-day route for the whole group. Pick the vibe.</p>
+      <div class="opts" data-group="sat">
+        <div class="opt" data-id="sat-1">
+          <div class="oh"><span class="tag">Route 1</span><h4>Classic Paris icons</h4><span class="tick">✓</span></div>
+          <p>AM: Eiffel Tower (timed entry). Midday: picnic on the Champ de Mars. PM: climb the Arc de Triomphe. Eve: Champs-Élysées + tower sparkle after dark.</p>
+          <div class="links">
+            <a class="pill" href="https://www.toureiffel.paris/en" target="_blank" rel="noopener">Eiffel tickets ↗</a>
+            <a class="pill ghost" href="https://www.paris-arc-de-triomphe.fr/en/" target="_blank" rel="noopener">Arc ↗</a>
+          </div>
+        </div>
+        <div class="opt" data-id="sat-2">
+          <div class="oh"><span class="tag">Route 2</span><h4>Art, gardens &amp; old Paris</h4><span class="tick">✓</span></div>
+          <p>AM: Louvre highlights (timed entry; teens free). Midday: Tuileries Gardens. PM: Musée d'Orsay or wander the Marais. Eve: dinner in the Marais.</p>
+          <div class="links">
+            <a class="pill" href="https://www.louvre.fr/en/billetterie" target="_blank" rel="noopener">Louvre tickets ↗</a>
+            <a class="pill ghost" href="https://www.musee-orsay.fr/en" target="_blank" rel="noopener">Orsay ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY split -->
+  <div class="day">
+    <div class="day-top">
+      <div>
+        <div class="dt">Sunday · Game Day</div>
+        <h3>Split day</h3>
+      </div>
+      <span class="badge">2 crews</span>
+    </div>
+    <div class="day-body">
+      <div class="split">
+        <div class="crew">
+          <div class="crew-top guys"><span class="em">⚜️</span><h3>The Guys → Game</h3></div>
+          <div class="crew-body">
+            <ul class="info" style="font-size:13.5px">
+              <li><span class="k">Kickoff</span><span>2:30 PM · Stade de France · <b>Who Dat</b></span></li>
+              <li><span class="k">Get there</span><span>RER B from St-Michel → Stade de France–St-Denis (~20–25 min, no changes)</span></li>
+              <li><span class="k">Plan</span><span>Up early for the fan zone. Lunch + drinks. Keep an eye on the in-law so he doesn't get lost in his feelings after.</span></li>
+              <li><span class="k">Dress code</span><span>Saints black &amp; gold, or rep the 🐶 <b>Dawg Pound</b> — anyone here for the Steelers roots for the Saints today. One Terrible Towel permitted, as a drink coaster.</span></li>
+              <li><span class="k">After</span><span>Trains pack out — expect a wait. Winners buy the first round.</span></li>
+            </ul>
+            <div class="links" style="margin-top:10px">
+              <a class="pill" href="https://www.nfl.com/international/games/paris/" target="_blank" rel="noopener">NFL tickets ↗</a>
+              <a class="pill ghost" href="https://www.stadefrance.com/en" target="_blank" rel="noopener">Stadium ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="crew">
+          <div class="crew-top fam"><span class="em">🥐</span><h3>Ladies + Teens</h3></div>
+          <div class="crew-body">
+            <p class="lead" style="margin-bottom:10px">Pick one — all easy from the 5th.</p>
+            <div class="opts" data-group="sun">
+              <div class="opt" data-id="sun-a">
+                <div class="oh"><span class="tag">A</span><h4>Montmartre &amp; Sacré-Cœur</h4><span class="tick">✓</span></div>
+                <p>Hilltop village, artist square, best free city view. Funicular up to save legs.</p>
+                <div class="links"><a class="pill" href="https://www.sacre-coeur-montmartre.com/english/" target="_blank" rel="noopener">Basilica ↗</a></div>
+              </div>
+              <div class="opt" data-id="sun-b">
+                <div class="oh"><span class="tag">B</span><h4>Shopping + gardens + macarons</h4><span class="tick">✓</span></div>
+                <p>Marais boutiques, sailboats in Luxembourg Gardens, a macaron class for the teens.</p>
+                <div class="links"><a class="pill" href="https://www.getyourguide.com/paris-l16/macaron-class-tc262/" target="_blank" rel="noopener">Macaron classes ↗</a></div>
+              </div>
+              <div class="opt" data-id="sun-c">
+                <div class="oh"><span class="tag">C</span><h4>Views &amp; a little edge</h4><span class="tick">✓</span></div>
+                <p>Climb the Panthéon dome (in the 5th, low crowds) + Batobus river hop-on/hop-off.</p>
+                <div class="links">
+                  <a class="pill" href="https://www.paris-pantheon.fr/en/" target="_blank" rel="noopener">Panthéon ↗</a>
+                  <a class="pill ghost" href="https://www.batobus.com/en/" target="_blank" rel="noopener">Batobus ↗</a>
+                </div>
+              </div>
+            </div>
+            <p class="note">Catacombs were closed for renovation — check the official site before planning around them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="day">
+    <div class="day-top">
+      <div>
+        <div class="dt">Monday · Departure</div>
+        <h3>Slow morning, train home</h3>
+      </div>
+      <span class="badge">Everyone</span>
+    </div>
+    <div class="day-body">
+      <p class="lead">Keep it light with luggage: a Seine walk, a bakery breakfast, maybe a peek inside Notre-Dame if the line's short — then Gare de l'Est for the train home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIN -->
+<section class="panel" id="train">
+  <div class="sec-head">
+    <span class="no">02</span>
+    <div>
+      <h2>Getting There</h2>
+      <p class="sub">Direct high-speed · Kaiserslautern → Paris</p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-top">
+      <div>
+        <div class="dt">ICE Alleo / TGV Alleo</div>
+        <h3>Kaiserslautern Hbf → Gare de l'Est</h3>
+      </div>
+      <span class="badge">~2h 30m</span>
+    </div>
+    <div class="day-body">
+      <ul class="info">
+        <li><span class="k">Duration</span><span>About 2h 26m–2h 36m, direct — no changes.</span></li>
+        <li><span class="k">Frequency</span><span>Roughly 4 direct trains per day each way.</span></li>
+        <li><span class="k">Arrive</span><span>Gare de l'Est — central. Metro Line 4 straight to the 5th / Saint-Michel.</span></li>
+        <li><span class="k">Game link</span><span>RER B to the stadium is a 5-min walk (Gare du Nord) or grab it at Châtelet.</span></li>
+        <li><span class="k">Onboard</span><span>WiFi, power, luggage space, bistro car.</span></li>
+        <li><span class="k">Depart from</span><span>Kaiserslautern <b>Hbf</b> — not Kaiserslautern West.</span></li>
+      </ul>
+      <div class="call">
+        <b>★ Book by August.</b> Exact Oct 25 times aren't published yet — SNCF/DB release schedules ~3–6 months ahead, so late-October opens around July–Aug 2026. This NFL weekend (and the Monday return) will fill up; advance fares start far lower (~€29–47) than day-of.
+      </div>
+      <div class="links">
+        <a class="pill" href="https://www.bahn.com/en" target="_blank" rel="noopener">Deutsche Bahn ↗</a>
+        <a class="pill" href="https://www.sncf-connect.com/en-en/" target="_blank" rel="noopener">SNCF Connect ↗</a>
+        <a class="pill ghost" href="https://www.thetrainline.com/" target="_blank" rel="noopener">Trainline ↗</a>
+        <a class="pill ghost" href="https://www.omio.com/" target="_blank" rel="noopener">Omio ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-top"><div><div class="dt">In-city transit</div><h3>Getting around Paris</h3></div></div>
+    <div class="day-body">
+      <ul class="info">
+        <li><span class="k">Navigo Easy</span><span>€2 card per person at any station machine; load rides (~€2.55 each). Paper tickets are gone.</span></li>
+        <li><span class="k">Museum Pass</span><span>€55 / 2 days — pays off at 3+ paid sites and skips ticket lines.</span></li>
+        <li><span class="k">Watch bags</span><span>Pickpockets work Châtelet, the Eiffel base &amp; packed RER cars. Bags zipped, in front.</span></li>
+      </ul>
+      <div class="links">
+        <a class="pill ghost" href="https://www.ratp.fr/en" target="_blank" rel="noopener">RATP transit ↗</a>
+        <a class="pill ghost" href="https://www.parismuseumpass.fr/en" target="_blank" rel="noopener">Museum Pass ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAY -->
+<section class="panel" id="stay">
+  <div class="sec-head">
+    <span class="no">03</span>
+    <div>
+      <h2>Where to Stay</h2>
+      <p class="sub">Airbnb shortlist · 3–4 bedrooms for 8</p>
+    </div>
+  </div>
+
+  <div class="call" style="border-color:var(--line-ink);background:var(--paper-card);color:var(--ink)">
+    <b style="color:var(--gold-deep)">The idea:</b> stay central for sightseeing, take the train to the game. The RER B line links central Paris to the stadium — near <b>Saint-Michel</b> or <b>Châtelet</b> means a one-train ride on game day.
+  </div>
+
+  <div class="opts" data-group="stay">
+    <div class="opt" data-id="stay-5th">
+      <div class="oh"><span class="tag">Top pick · $$</span><h4>Latin Quarter (5th)</h4><span class="tick">✓</span></div>
+      <p>Direct RER B to the stadium from Saint-Michel + the best first-trip sightseeing area. Safe, lively, great cheap eats for a group. Search near the Sorbonne/Panthéon; avoid the Rue de la Huchette tourist strip.</p>
+    </div>
+    <div class="opt" data-id="stay-marais">
+      <div class="oh"><span class="tag">$$$</span><h4>Le Marais (3rd/4th)</h4><span class="tick">✓</span></div>
+      <p>Most charming, classic Paris. Steps from Notre-Dame. One metro hop to Châtelet for the RER B. Ask for an elevator ("ascenseur").</p>
+    </div>
+    <div class="opt" data-id="stay-chat">
+      <div class="oh"><span class="tag">$$$</span><h4>Châtelet / Les Halles (1st/2nd)</h4><span class="tick">✓</span></div>
+      <p>Dead center, direct RER B, walk to the Louvre &amp; Marais. Pick a quiet side street off the big boulevards.</p>
+    </div>
+    <div class="opt" data-id="stay-germain">
+      <div class="oh"><span class="tag">$$$$</span><h4>Saint-Germain (6th)</h4><span class="tick">✓</span></div>
+      <p>Elegant &amp; calm, near the Latin Quarter's RER B access. Priciest; fewer cheap group meals.</p>
+    </div>
+  </div>
+
+  <div class="call">
+    <b>Airbnb filters:</b> 3–4 real bedrooms (check bed setup) · ~10-min walk to Saint-Michel or Châtelet · elevator · registered listing (has a registration number) · quiet/courtyard unit · lots of recent reviews.
+  </div>
+</section>
+
+<!-- BOOKING CHECKLIST -->
+<section class="panel" id="checklist">
+  <div class="sec-head">
+    <span class="no">04</span>
+    <div>
+      <h2>Booking Tracker</h2>
+      <p class="sub">Tap when done · progress saves on your device</p>
+    </div>
+  </div>
+
+  <div class="prog">
+    <div class="top"><span>Trip readiness</span><b><span id="progPct">0</span>%</b></div>
+    <div class="bar"><i id="progBar"></i></div>
+  </div>
+
+  <div class="day"><div class="day-body" style="padding-top:4px">
+    <div id="checklist-rows"></div>
+  </div></div>
+  <button class="reset" onclick="resetGroup('check')">Reset booking tracker</button>
+</section>
+
+<!-- VOTE -->
+<section class="panel" id="vote">
+  <div class="sec-head">
+    <span class="no">05</span>
+    <div>
+      <h2>Group Vote</h2>
+      <p class="sub">Tap to add your vote · counts save on your device</p>
+    </div>
+  </div>
+  <p class="lead" style="margin-bottom:14px;color:var(--muted)">Everyone taps what they want to do. Highest tallies win. <span style="color:var(--rouge)">Heads up: votes are stored per-device, so share the final call in the group chat.</span></p>
+  <div id="vote-rows"></div>
+  <button class="reset" onclick="resetGroup('vote')">Reset my votes</button>
+</section>
+
+<!-- PACKING -->
+<section class="panel" id="packing">
+  <div class="sec-head">
+    <span class="no">06</span>
+    <div>
+      <h2>Packing &amp; To-Do</h2>
+      <p class="sub">Tap to check off · saves on your device</p>
+    </div>
+  </div>
+  <div class="prog">
+    <div class="top"><span>Packed &amp; ready</span><b><span id="packPct">0</span>%</b></div>
+    <div class="bar"><i id="packBar"></i></div>
+  </div>
+  <div class="day"><div class="day-body" style="padding-top:4px">
+    <div id="packing-rows"></div>
+  </div></div>
+  <button class="reset" onclick="resetGroup('pack')">Reset packing list</button>
+</section>
+
+</main>
+
+<div class="saved-flash" id="flash">Saved ✓</div>
+
+<footer>
+  Cleveland Crawfish travel dept · Paris '26 · ⚜️ Who Dat · 🐶 Go Browns · 🚫 No Steelers Allowed
+</footer>
+
+<script>
+/* ---------------- data ---------------- */
+const CHECKLIST = [
+  ["Game tickets (NFL account)","Steelers @ Saints · Oct 25"],
+  ["Airbnb booked","3–4 BR in the 5th, near Saint-Michel"],
+  ["Train out — Fri","Kaiserslautern Hbf → Gare de l'Est"],
+  ["Train back — Mon","Gare de l'Est → Kaiserslautern Hbf"],
+  ["Eiffel Tower timed entry","Book 3–6 weeks ahead"],
+  ["Louvre timed entry","Book 1–2 weeks ahead"],
+  ["Seine cruise","If doing Friday option C"],
+  ["Navigo Easy plan","€2/person on arrival"],
+  ["Passports valid","Check expiry for all 8"],
+  ["Travel insurance / EHIC","Confirm coverage"],
+];
+const PACKING = [
+  ["Saints ⚜️ or Browns 🐶 gear","Anything but Steelers. House rules."],
+  ["Dawg Pound dog mask / bark voice","Optional but encouraged 🐶"],
+  ["Comfortable walking shoes","Lots of cobblestones"],
+  ["Light rain jacket","Late-Oct Paris can be wet"],
+  ["Layers / warm top","Chilly at the stadium + evenings"],
+  ["Phone + EU charger/adapter","Type C/E plug"],
+  ["Power bank","Long sightseeing days"],
+  ["Crossbody / zip bag","Pickpocket-safe"],
+  ["Cash + cards","Notify bank of travel"],
+  ["Printed/downloaded tickets","Game + train + entries"],
+  ["Snacks for the train",""],
+];
+const VOTES = [
+  ["Friday: Sunset Seine cruise","fri-c"],
+  ["Friday: Latin Quarter stroll","fri-a"],
+  ["Saturday: Classic icons (Eiffel + Arc)","sat-1"],
+  ["Saturday: Art & gardens (Louvre + Orsay)","sat-2"],
+  ["Sunday crew: Montmartre","sun-a"],
+  ["Sunday crew: Shopping + macarons","sun-b"],
+  ["Sunday crew: Panthéon + Batobus","sun-c"],
+  ["Add a Versailles half-day somewhere",""],
+  ["🐶 Group bark at the Eiffel Tower (Dawg Pound goes global)",""],
+  ["Find a bar showing other NFL games Sunday night",""],
+];
+
+/* ---------------- storage ---------------- */
+const KEY="paris26";
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(s){localStorage.setItem(KEY,JSON.stringify(s));flash()}
+let state=load();
+state.picks=state.picks||{};
+state.check=state.check||{};
+state.pack=state.pack||{};
+state.vote=state.vote||{};
+
+let ft;
+function flash(){const f=document.getElementById('flash');f.classList.add('show');clearTimeout(ft);ft=setTimeout(()=>f.classList.remove('show'),1100)}
+
+/* ---------------- tabs ---------------- */
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------------- pick options ---------------- */
+document.querySelectorAll('.opt').forEach(opt=>{
+  const id=opt.dataset.id;
+  if(state.picks[id])opt.classList.add('pick');
+  opt.addEventListener('click',ev=>{
+    if(ev.target.closest('a'))return; // let links work
+    const group=opt.closest('.opts').dataset.group;
+    // stay + sun + fri + sat are single-pick per group
+    document.querySelectorAll('.opts[data-group="'+group+'"] .opt').forEach(o=>{
+      if(o!==opt){o.classList.remove('pick');delete state.picks[o.dataset.id];}
+    });
+    opt.classList.toggle('pick');
+    if(opt.classList.contains('pick'))state.picks[id]=1;else delete state.picks[id];
+    save(state);
+  });
+});
+
+/* ---------------- checklist ---------------- */
+function renderRows(list,container,bucket){
+  const el=document.getElementById(container);el.innerHTML='';
+  list.forEach((item,i)=>{
+    const key=bucket+i;
+    const row=document.createElement('div');
+    row.className='row'+(state[bucket][key]?' done':'');
+    row.innerHTML='<div class="box">✓</div><div class="rtext">'+item[0]+(item[1]?'<small>'+item[1]+'</small>':'')+'</div>';
+    row.addEventListener('click',()=>{
+      if(state[bucket][key]){delete state[bucket][key];row.classList.remove('done')}
+      else{state[bucket][key]=1;row.classList.add('done')}
+      save(state);updateProg();
+    });
+    el.appendChild(row);
+  });
+}
+function updateProg(){
+  const c=Object.keys(state.check).length,ct=CHECKLIST.length;
+  const p=Math.round(c/ct*100);
+  document.getElementById('progPct').textContent=p;
+  document.getElementById('progBar').style.width=p+'%';
+  const k=Object.keys(state.pack).length,kt=PACKING.length;
+  const q=Math.round(k/kt*100);
+  document.getElementById('packPct').textContent=q;
+  document.getElementById('packBar').style.width=q+'%';
+}
+
+/* ---------------- votes ---------------- */
+function renderVotes(){
+  const el=document.getElementById('vote-rows');el.innerHTML='';
+  VOTES.forEach((v,i)=>{
+    const key='v'+i;
+    const mine=state.vote[key]||0;
+    const item=document.createElement('div');
+    item.className='vote-item';
+    item.innerHTML=
+      '<div class="vh"><h4>'+v[0]+'</h4>'+
+      '<button class="vbtn'+(mine?' on':'')+'"><span>'+(mine?'★ Voted':'Vote')+'</span><span class="c">'+mine+'</span></button></div>'+
+      (v[1]?'<div class="vmeta">Linked to itinerary option '+v[1].toUpperCase()+'</div>':'');
+    const btn=item.querySelector('.vbtn');
+    btn.addEventListener('click',()=>{
+      state.vote[key]=mine?0:1; // one vote per person per device (toggle)
+      save(state);renderVotes();
+    });
+    el.appendChild(item);
+  });
+}
+
+/* ---------------- reset ---------------- */
+function resetGroup(bucket){
+  if(!confirm('Reset this list on your device?'))return;
+  state[bucket]={};save(state);
+  if(bucket==='check'){renderRows(CHECKLIST,'checklist-rows','check');updateProg();}
+  if(bucket==='pack'){renderRows(PACKING,'packing-rows','pack');updateProg();}
+  if(bucket==='vote'){renderVotes();}
+}
+
+/* ---------------- countdown ---------------- */
+function countdown(){
+  const game=new Date('2026-10-25T14:30:00+02:00');
+  const now=new Date();
+  const diff=game-now;
+  const el=document.getElementById('countNum'),lb=document.getElementById('countLbl');
+  if(diff<=0){el.textContent='⚜️';lb.textContent='Who Dat! Game time!';return;}
+  const days=Math.floor(diff/86400000);
+  el.textContent=days;
+  lb.textContent=days===1?'day to kickoff':'days to kickoff';
+}
+
+/* ---------------- fan allegiance + steelers slander ---------------- */
+const JABS=[
+  "6 rings and still can't win in Paris. Allegedly.",
+  "Terrible Towels make great café napkins. 🥐",
+  "Who Dat > Here We Go. It's just math.",
+  "The Saints are the away team, but somehow still classier.",
+  "Dear brother-in-law: la défaite means 'the loss.' Learn it.",
+  "Steelers fans travel well. To watch us win.",
+  "Gold looks better on a Saints jersey. Sorry, science.",
+  "Bringing a Browns fan to root against the Steelers = free therapy.",
+  "Fleur-de-lis > whatever those Steelers hypocycloids are.",
+  "Renegade? Never heard of her. ⚜️"
+];
+function renderAllegiance(){
+  const el=document.getElementById('allegiance');
+  el.innerHTML=
+    '<span class="fanbadge saints">⚜️ Saints — Who Dat</span>'+
+    '<span class="fanbadge browns">🐶 Browns — Dawg Pound</span>'+
+    '<span class="fanbadge steelers"><s>Steelers</s> — the in-law</span>';
+}
+function renderJab(){
+  const box=document.getElementById('jabBox');
+  if(!box)return;
+  box.textContent="“"+JABS[Math.floor(Math.random()*JABS.length)]+"”";
+}
+/* Browns Dawg Pound: mix of hype and self-aware pain */
+const DAWG=[
+  "The Browns are 0-0 in Paris. Undefeated abroad. Cope.",
+  "We didn't come 4,000 miles to NOT bark. Woof woof.",
+  "Super Bowls since 1999: 0. Cathedrals about to visit: 1. Balance.",
+  "The Dawg Pound doesn't travel light — it travels loud.",
+  "Our QB carousel has more stops than the Paris Métro.",
+  "Every year is next year. This year, next year is in Paris.",
+  "Bengals fans wish they had a European vacation this good.",
+  "We boo the Steelers in two languages now. Progress.",
+  "Believeland goes international. Bark at the Eiffel Tower.",
+  "Baker who? We're in Paris, we don't do regrets.",
+  "The only browns you want in Paris are the pastries. 🥐",
+  "0 rings, 1 passport, infinite hope. Here We Go."
+];
+function renderDawg(){
+  const box=document.getElementById('dawgBox');
+  if(!box)return;
+  box.textContent="🐶 “"+DAWG[Math.floor(Math.random()*DAWG.length)]+"”";
+}
+
+/* ---------------- init ---------------- */
+renderAllegiance();
+renderRows(CHECKLIST,'checklist-rows','check');
+renderRows(PACKING,'packing-rows','pack');
+renderVotes();
+updateProg();
+countdown();
+renderJab();
+renderDawg();
+setInterval(countdown,3600000);
+</script>
+</body>
+</html>
