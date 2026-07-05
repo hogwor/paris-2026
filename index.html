@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BYk=" crossorigin="">
 <style>
 :root{
   --ink:#0a0a0a;        /* Saints black */
@@ -40,8 +39,6 @@ body{
 }
 a{color:inherit}
 img{max-width:100%}
-.leaflet-container img{max-width:none}
-.leaflet-tile{-webkit-backface-visibility:hidden;backface-visibility:hidden}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -661,8 +658,67 @@ footer{
     <b style="color:var(--gold-deep)">BLUF:</b> every shortlisted neighborhood is walkable to the sights and one RER B ride from the stadium. <b>Latin Quarter (5th)</b> is closest to the game (RER B departs right there at Saint-Michel); <b>Saint-Germain</b> is closest to the Eiffel Tower; <b>Marais</b> is closest to Notre-Dame. Once the exact Airbnb address is booked, drop a pin and these numbers get exact.
   </div>
 
-  <div style="border-radius:14px;overflow:hidden;border:1px solid var(--line);margin:16px 0">
-    <div id="tripMap" style="height:420px"></div>
+  <div style="position:relative;height:420px;overflow:hidden;border-radius:14px;border:1px solid var(--line);margin:16px 0;background:#e8e4d8">
+    <div style="position:absolute;left:50%;top:50%;margin-left:-857.7px;margin-top:-777.9px;width:1792px;height:1536px">
+    <img src="https://tile.openstreetmap.org/13/4146/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2815.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:0px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4146/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2816.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:256px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4146/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2817.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:512px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4146/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2818.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:768px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4146/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2819.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:1024px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4146/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:0px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4147/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:256px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4148/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:512px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4149/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:768px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4150/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:1024px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4151/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:1280px;top:1280px;display:block" alt="">
+    <img src="https://tile.openstreetmap.org/13/4152/2820.png" width="256" height="256" loading="eager" style="position:absolute;left:1536px;top:1280px;display:block" alt="">
+    <div title="Latin Quarter (5th) — top pick" style="position:absolute;left:855.3px;top:867.8px;width:34px;height:34px;background:#a8905c;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:17px;line-height:1">🏠</span></div>
+    <div title="Le Marais (3rd/4th)" style="position:absolute;left:936.8px;top:784.6px;width:34px;height:34px;background:#a8905c;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:17px;line-height:1">🏠</span></div>
+    <div title="Châtelet / Les Halles" style="position:absolute;left:855.3px;top:758.9px;width:34px;height:34px;background:#a8905c;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:17px;line-height:1">🏠</span></div>
+    <div title="Saint-Germain (6th)" style="position:absolute;left:773.7px;top:837.7px;width:34px;height:34px;background:#a8905c;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:17px;line-height:1">🏠</span></div>
+    <div title="Eiffel Tower" style="position:absolute;left:552.4px;top:795.9px;width:28px;height:28px;background:#0a0a0a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:14px;line-height:1">📍</span></div>
+    <div title="Louvre" style="position:absolute;left:803.5px;top:776.4px;width:28px;height:28px;background:#0a0a0a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:14px;line-height:1">📍</span></div>
+    <div title="Notre-Dame" style="position:absolute;left:875.2px;top:843.7px;width:28px;height:28px;background:#0a0a0a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:14px;line-height:1">📍</span></div>
+    <div title="Sacré-Cœur" style="position:absolute;left:835.5px;top:545.3px;width:28px;height:28px;background:#0a0a0a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:14px;line-height:1">📍</span></div>
+    <div title="Arc de Triomphe" style="position:absolute;left:555.3px;top:659.5px;width:28px;height:28px;background:#0a0a0a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:14px;line-height:1">📍</span></div>
+    <div title="Stade de France" style="position:absolute;left:928.6px;top:199.1px;width:40px;height:40px;background:#8a1c2b;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;cursor:default"><span style="transform:rotate(45deg);font-size:20px;line-height:1">🏟️</span></div>
+    </div>
+    <div style="position:absolute;left:10px;bottom:10px;background:#fbf9f2;padding:8px 10px;border-radius:8px;font:12px Archivo,sans-serif;line-height:1.8;box-shadow:0 1px 4px rgba(0,0,0,.3)">
+      <span style="display:inline-block;width:12px;height:12px;background:#a8905c;border:2px solid #fff;border-radius:50%;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏠 Airbnb areas<br>
+      <span style="display:inline-block;width:10px;height:10px;background:#0a0a0a;border:2px solid #fff;border-radius:50%;margin-right:7px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>📍 Attractions<br>
+      <span style="display:inline-block;width:14px;height:14px;background:#8a1c2b;border:2px solid #fff;border-radius:50%;margin-right:5px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏟️ Stade de France
+    </div>
+    <div style="position:absolute;right:6px;bottom:2px;font:10px sans-serif;color:#0009;background:#fff9">&copy; OpenStreetMap contributors</div>
   </div>
 
   <div class="day"><div class="day-body">
@@ -833,7 +889,6 @@ document.getElementById('tabs').addEventListener('click',e=>{
   document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   document.getElementById(b.dataset.tab).classList.add('active');
-  if(b.dataset.tab==='map')requestAnimationFrame(()=>requestAnimationFrame(initTripMap));
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
@@ -979,63 +1034,6 @@ countdown();
 renderJab();
 renderDawg();
 setInterval(countdown,3600000);
-
-/* ---------------- trip map ---------------- */
-let tripMap;
-function initTripMap(){
-  if(tripMap){setTimeout(()=>tripMap.invalidateSize(),0);return}
-  tripMap=L.map('tripMap').setView([48.8636,2.3445],13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
-  }).addTo(tripMap);
-
-  const pin=(bg,size,glyph)=>L.divIcon({
-    className:'',
-    html:'<div style="width:'+size+'px;height:'+size+'px;background:'+bg+';border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center">'+
-         '<span style="transform:rotate(45deg);font-size:'+Math.round(size*0.5)+'px;line-height:1">'+glyph+'</span></div>',
-    iconSize:[size,size],
-    iconAnchor:[size/2,size]
-  });
-  const stayIcon=pin('#a8905c',34,'🏠');
-  const seeIcon=pin('#0a0a0a',28,'📍');
-  const gameIcon=pin('#8a1c2b',40,'🏟️');
-
-  const stays=[
-    ['Latin Quarter (5th) — top pick',48.8496,2.3470],
-    ['Le Marais (3rd/4th)',48.8590,2.3610],
-    ['Châtelet / Les Halles (1st/2nd)',48.8619,2.3470],
-    ['Saint-Germain (6th)',48.8530,2.3330]
-  ];
-  const sights=[
-    ['Eiffel Tower',48.8584,2.2945],
-    ['Louvre',48.8606,2.3376],
-    ["Notre-Dame",48.8530,2.3499],
-    ['Sacré-Cœur',48.8867,2.3431],
-    ['Arc de Triomphe',48.8738,2.2950]
-  ];
-  stays.forEach(([n,lat,lng])=>L.marker([lat,lng],{icon:stayIcon}).addTo(tripMap).bindPopup('<b>'+n+'</b><br>Airbnb search area'));
-  sights.forEach(([n,lat,lng])=>L.marker([lat,lng],{icon:seeIcon}).addTo(tripMap).bindPopup(n));
-  L.marker([48.9244,2.3601],{icon:gameIcon}).addTo(tripMap).bindPopup('<b>Stade de France</b><br>Saints vs. Steelers · Oct 25');
-
-  const legend=L.control({position:'bottomleft'});
-  legend.onAdd=function(){
-    const div=L.DomUtil.create('div');
-    div.style.cssText='background:#fbf9f2;padding:8px 10px;border-radius:8px;font:12px Archivo,sans-serif;line-height:1.8;box-shadow:0 1px 4px rgba(0,0,0,.3)';
-    div.innerHTML='<span style="display:inline-block;width:12px;height:12px;background:#a8905c;border:2px solid #fff;border-radius:50%;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏠 Airbnb areas<br>'+
-      '<span style="display:inline-block;width:10px;height:10px;background:#0a0a0a;border:2px solid #fff;border-radius:50%;margin-right:7px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>📍 Attractions<br>'+
-      '<span style="display:inline-block;width:14px;height:14px;background:#8a1c2b;border:2px solid #fff;border-radius:50%;margin-right:5px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏟️ Stade de France';
-    return div;
-  };
-  legend.addTo(tripMap);
-  if(window.ResizeObserver){
-    new ResizeObserver(()=>tripMap.invalidateSize()).observe(document.getElementById('tripMap'));
-  }else{
-    [0,150,400,900].forEach(ms=>setTimeout(()=>tripMap.invalidateSize(),ms));
-  }
-  window.addEventListener('resize',()=>tripMap.invalidateSize());
-  window.addEventListener('orientationchange',()=>setTimeout(()=>tripMap.invalidateSize(),300));
-}
 </script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </body>
 </html>
