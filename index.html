@@ -142,6 +142,7 @@ nav.tabs button.active::after{
 /* ---------- SECTIONS ---------- */
 main{max-width:760px;margin:0 auto;padding:0 16px}
 .panel{display:none;padding:22px 0 12px;animation:fade .25s ease}
+#map.panel{animation:none}
 .panel.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -829,7 +830,7 @@ document.getElementById('tabs').addEventListener('click',e=>{
   document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   document.getElementById(b.dataset.tab).classList.add('active');
-  if(b.dataset.tab==='map')initTripMap();
+  if(b.dataset.tab==='map')requestAnimationFrame(()=>requestAnimationFrame(initTripMap));
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
@@ -980,8 +981,7 @@ setInterval(countdown,3600000);
 let tripMap;
 function initTripMap(){
   if(tripMap){setTimeout(()=>tripMap.invalidateSize(),0);return}
-  L.Browser.any3d=false;
-  tripMap=L.map('tripMap',{zoomAnimation:false,fadeAnimation:false,markerZoomAnimation:false}).setView([48.8636,2.3445],13);
+  tripMap=L.map('tripMap').setView([48.8636,2.3445],13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
   }).addTo(tripMap);
@@ -1017,7 +1017,9 @@ function initTripMap(){
     return div;
   };
   legend.addTo(tripMap);
-  setTimeout(()=>tripMap.invalidateSize(),0);
+  [0,150,400,900].forEach(ms=>setTimeout(()=>tripMap.invalidateSize(),ms));
+  window.addEventListener('resize',()=>tripMap.invalidateSize());
+  window.addEventListener('orientationchange',()=>setTimeout(()=>tripMap.invalidateSize(),300));
 }
 </script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
