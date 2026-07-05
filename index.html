@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BYk=" crossorigin="">
 <style>
 :root{
   --ink:#0a0a0a;        /* Saints black */
@@ -39,6 +40,7 @@ body{
 }
 a{color:inherit}
 img{max-width:100%}
+.leaflet-container img{max-width:none}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -383,6 +385,7 @@ footer{
   <button class="active" data-tab="plan">Itinerary</button>
   <button data-tab="train">Train</button>
   <button data-tab="stay">Where to Stay</button>
+  <button data-tab="map">Map</button>
   <button data-tab="checklist">Booking</button>
   <button data-tab="vote">Vote</button>
   <button data-tab="packing">Packing</button>
@@ -642,10 +645,72 @@ footer{
   </div>
 </section>
 
+<!-- MAP -->
+<section class="panel" id="map">
+  <div class="sec-head">
+    <span class="no">04</span>
+    <div>
+      <h2>Map &amp; Distances</h2>
+      <p class="sub">Airbnb options vs. the stadium &amp; big sights</p>
+    </div>
+  </div>
+
+  <div class="call" style="border-color:var(--line-ink);background:var(--paper-card);color:var(--ink)">
+    <b style="color:var(--gold-deep)">BLUF:</b> every shortlisted neighborhood is walkable to the sights and one RER B ride from the stadium. <b>Latin Quarter (5th)</b> is closest to the game (RER B departs right there at Saint-Michel); <b>Saint-Germain</b> is closest to the Eiffel Tower; <b>Marais</b> is closest to Notre-Dame. Once the exact Airbnb address is booked, drop a pin and these numbers get exact.
+  </div>
+
+  <div id="tripMap" style="height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin:16px 0"></div>
+
+  <div class="day"><div class="day-body">
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <thead>
+        <tr style="text-align:left;border-bottom:1px solid var(--line)">
+          <th style="padding:6px 8px 6px 0">From Airbnb in →</th>
+          <th style="padding:6px 8px">Stade de France</th>
+          <th style="padding:6px 8px">Eiffel Tower</th>
+          <th style="padding:6px 8px">Louvre</th>
+          <th style="padding:6px 8px">Notre-Dame</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)">
+          <td style="padding:6px 8px 6px 0"><b>Latin Quarter (5th)</b></td>
+          <td style="padding:6px 8px">~9 km · 1 RER B ride, ~25 min (board at Saint-Michel)</td>
+          <td style="padding:6px 8px">~4 km · 45–55 min walk / ~20 min metro</td>
+          <td style="padding:6px 8px">~1.5 km · 18–20 min walk</td>
+          <td style="padding:6px 8px">~0.9 km · 10–12 min walk</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--line)">
+          <td style="padding:6px 8px 6px 0"><b>Le Marais (3rd/4th)</b></td>
+          <td style="padding:6px 8px">~10 km · 1 metro hop to Châtelet, then RER B, ~30 min</td>
+          <td style="padding:6px 8px">~5.5 km · ~25 min metro</td>
+          <td style="padding:6px 8px">~1.7 km · 20 min walk</td>
+          <td style="padding:6px 8px">~1.1 km · 13–15 min walk</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--line)">
+          <td style="padding:6px 8px 6px 0"><b>Châtelet / Les Halles</b></td>
+          <td style="padding:6px 8px">~10 km · direct RER B from Châtelet, ~25 min</td>
+          <td style="padding:6px 8px">~5 km · ~20 min metro</td>
+          <td style="padding:6px 8px">~0.9 km · 10 min walk</td>
+          <td style="padding:6px 8px">~1.3 km · 15 min walk</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px 6px 0"><b>Saint-Germain (6th)</b></td>
+          <td style="padding:6px 8px">~10.5 km · short walk/bus to Saint-Michel, then RER B</td>
+          <td style="padding:6px 8px">~3.3 km · 35–40 min walk / ~15 min metro</td>
+          <td style="padding:6px 8px">~1.4 km · 17 min walk</td>
+          <td style="padding:6px 8px">~1.2 km · 15 min walk</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:10px">Straight-line/typical-route estimates for planning — actual door-to-door time depends on the exact building.</p>
+  </div></div>
+</section>
+
 <!-- BOOKING CHECKLIST -->
 <section class="panel" id="checklist">
   <div class="sec-head">
-    <span class="no">04</span>
+    <span class="no">05</span>
     <div>
       <h2>Booking Tracker</h2>
       <p class="sub">Tap when done · progress saves on your device</p>
@@ -666,7 +731,7 @@ footer{
 <!-- VOTE -->
 <section class="panel" id="vote">
   <div class="sec-head">
-    <span class="no">05</span>
+    <span class="no">06</span>
     <div>
       <h2>Group Vote</h2>
       <p class="sub">Tap to add your vote · counts save on your device</p>
@@ -680,7 +745,7 @@ footer{
 <!-- PACKING -->
 <section class="panel" id="packing">
   <div class="sec-head">
-    <span class="no">06</span>
+    <span class="no">07</span>
     <div>
       <h2>Packing &amp; To-Do</h2>
       <p class="sub">Tap to check off · saves on your device</p>
@@ -764,6 +829,7 @@ document.getElementById('tabs').addEventListener('click',e=>{
   document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   document.getElementById(b.dataset.tab).classList.add('active');
+  if(b.dataset.tab==='map')initTripMap();
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
@@ -909,6 +975,51 @@ countdown();
 renderJab();
 renderDawg();
 setInterval(countdown,3600000);
+
+/* ---------------- trip map ---------------- */
+let tripMap;
+function initTripMap(){
+  if(tripMap){setTimeout(()=>tripMap.invalidateSize(),0);return}
+  L.Browser.any3d=false;
+  tripMap=L.map('tripMap',{zoomAnimation:false,fadeAnimation:false,markerZoomAnimation:false}).setView([48.8636,2.3445],13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(tripMap);
+
+  const stayIcon=L.divIcon({className:'',html:'<div style="background:#d3bc8d;border:2px solid #0a0a0a;border-radius:50%;width:16px;height:16px"></div>',iconSize:[16,16]});
+  const seeIcon=L.divIcon({className:'',html:'<div style="background:#0a0a0a;border:2px solid #fbf9f2;border-radius:50%;width:12px;height:12px"></div>',iconSize:[12,12]});
+  const gameIcon=L.divIcon({className:'',html:'<div style="background:#8a1c2b;border:2px solid #fbf9f2;border-radius:50%;width:18px;height:18px"></div>',iconSize:[18,18]});
+
+  const stays=[
+    ['Latin Quarter (5th) — top pick',48.8496,2.3470],
+    ['Le Marais (3rd/4th)',48.8590,2.3610],
+    ['Châtelet / Les Halles (1st/2nd)',48.8619,2.3470],
+    ['Saint-Germain (6th)',48.8530,2.3330]
+  ];
+  const sights=[
+    ['Eiffel Tower',48.8584,2.2945],
+    ['Louvre',48.8606,2.3376],
+    ["Notre-Dame",48.8530,2.3499],
+    ['Sacré-Cœur',48.8867,2.3431],
+    ['Arc de Triomphe',48.8738,2.2950]
+  ];
+  stays.forEach(([n,lat,lng])=>L.marker([lat,lng],{icon:stayIcon}).addTo(tripMap).bindPopup('<b>'+n+'</b><br>Airbnb search area'));
+  sights.forEach(([n,lat,lng])=>L.marker([lat,lng],{icon:seeIcon}).addTo(tripMap).bindPopup(n));
+  L.marker([48.9244,2.3601],{icon:gameIcon}).addTo(tripMap).bindPopup('<b>Stade de France</b><br>Saints vs. Steelers · Oct 25');
+
+  const legend=L.control({position:'bottomleft'});
+  legend.onAdd=function(){
+    const div=L.DomUtil.create('div');
+    div.style.cssText='background:#fbf9f2;padding:8px 10px;border-radius:8px;font:12px Archivo,sans-serif;line-height:1.7;box-shadow:0 1px 4px rgba(0,0,0,.3)';
+    div.innerHTML='<span style="display:inline-block;width:10px;height:10px;background:#d3bc8d;border:1px solid #0a0a0a;border-radius:50%;margin-right:6px"></span>Airbnb areas<br>'+
+      '<span style="display:inline-block;width:9px;height:9px;background:#0a0a0a;border-radius:50%;margin-right:7px"></span>Attractions<br>'+
+      '<span style="display:inline-block;width:12px;height:12px;background:#8a1c2b;border-radius:50%;margin-right:5px"></span>Stade de France';
+    return div;
+  };
+  legend.addTo(tripMap);
+  setTimeout(()=>tripMap.invalidateSize(),0);
+}
 </script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </body>
 </html>
