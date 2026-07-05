@@ -41,6 +41,7 @@ body{
 a{color:inherit}
 img{max-width:100%}
 .leaflet-container img{max-width:none}
+.leaflet-tile{-webkit-backface-visibility:hidden;backface-visibility:hidden}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -660,7 +661,9 @@ footer{
     <b style="color:var(--gold-deep)">BLUF:</b> every shortlisted neighborhood is walkable to the sights and one RER B ride from the stadium. <b>Latin Quarter (5th)</b> is closest to the game (RER B departs right there at Saint-Michel); <b>Saint-Germain</b> is closest to the Eiffel Tower; <b>Marais</b> is closest to Notre-Dame. Once the exact Airbnb address is booked, drop a pin and these numbers get exact.
   </div>
 
-  <div id="tripMap" style="height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin:16px 0"></div>
+  <div style="border-radius:14px;overflow:hidden;border:1px solid var(--line);margin:16px 0">
+    <div id="tripMap" style="height:420px"></div>
+  </div>
 
   <div class="day"><div class="day-body">
     <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -986,9 +989,16 @@ function initTripMap(){
     maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
   }).addTo(tripMap);
 
-  const stayIcon=L.divIcon({className:'',html:'<div style="background:#d3bc8d;border:2px solid #0a0a0a;border-radius:50%;width:16px;height:16px"></div>',iconSize:[16,16]});
-  const seeIcon=L.divIcon({className:'',html:'<div style="background:#0a0a0a;border:2px solid #fbf9f2;border-radius:50%;width:12px;height:12px"></div>',iconSize:[12,12]});
-  const gameIcon=L.divIcon({className:'',html:'<div style="background:#8a1c2b;border:2px solid #fbf9f2;border-radius:50%;width:18px;height:18px"></div>',iconSize:[18,18]});
+  const pin=(bg,size,glyph)=>L.divIcon({
+    className:'',
+    html:'<div style="width:'+size+'px;height:'+size+'px;background:'+bg+';border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center">'+
+         '<span style="transform:rotate(45deg);font-size:'+Math.round(size*0.5)+'px;line-height:1">'+glyph+'</span></div>',
+    iconSize:[size,size],
+    iconAnchor:[size/2,size]
+  });
+  const stayIcon=pin('#a8905c',34,'🏠');
+  const seeIcon=pin('#0a0a0a',28,'📍');
+  const gameIcon=pin('#8a1c2b',40,'🏟️');
 
   const stays=[
     ['Latin Quarter (5th) — top pick',48.8496,2.3470],
@@ -1010,14 +1020,18 @@ function initTripMap(){
   const legend=L.control({position:'bottomleft'});
   legend.onAdd=function(){
     const div=L.DomUtil.create('div');
-    div.style.cssText='background:#fbf9f2;padding:8px 10px;border-radius:8px;font:12px Archivo,sans-serif;line-height:1.7;box-shadow:0 1px 4px rgba(0,0,0,.3)';
-    div.innerHTML='<span style="display:inline-block;width:10px;height:10px;background:#d3bc8d;border:1px solid #0a0a0a;border-radius:50%;margin-right:6px"></span>Airbnb areas<br>'+
-      '<span style="display:inline-block;width:9px;height:9px;background:#0a0a0a;border-radius:50%;margin-right:7px"></span>Attractions<br>'+
-      '<span style="display:inline-block;width:12px;height:12px;background:#8a1c2b;border-radius:50%;margin-right:5px"></span>Stade de France';
+    div.style.cssText='background:#fbf9f2;padding:8px 10px;border-radius:8px;font:12px Archivo,sans-serif;line-height:1.8;box-shadow:0 1px 4px rgba(0,0,0,.3)';
+    div.innerHTML='<span style="display:inline-block;width:12px;height:12px;background:#a8905c;border:2px solid #fff;border-radius:50%;margin-right:6px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏠 Airbnb areas<br>'+
+      '<span style="display:inline-block;width:10px;height:10px;background:#0a0a0a;border:2px solid #fff;border-radius:50%;margin-right:7px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>📍 Attractions<br>'+
+      '<span style="display:inline-block;width:14px;height:14px;background:#8a1c2b;border:2px solid #fff;border-radius:50%;margin-right:5px;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>🏟️ Stade de France';
     return div;
   };
   legend.addTo(tripMap);
-  [0,150,400,900].forEach(ms=>setTimeout(()=>tripMap.invalidateSize(),ms));
+  if(window.ResizeObserver){
+    new ResizeObserver(()=>tripMap.invalidateSize()).observe(document.getElementById('tripMap'));
+  }else{
+    [0,150,400,900].forEach(ms=>setTimeout(()=>tripMap.invalidateSize(),ms));
+  }
   window.addEventListener('resize',()=>tripMap.invalidateSize());
   window.addEventListener('orientationchange',()=>setTimeout(()=>tripMap.invalidateSize(),300));
 }
